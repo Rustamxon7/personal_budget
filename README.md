@@ -2,7 +2,7 @@
 
 The Personal Budget App is going to be helpful to track your expenses and transactions.
 
-![image](?)
+![image](./diagram/diagram.png)
 
 ## Built With
 
