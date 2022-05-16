@@ -6,7 +6,7 @@ RSpec.describe User, type: :model do
       it 'returns true' do
         user = User.new(
           email: 'test@test.com',
-          password: '123456',
+          password: '123456'
         )
         expect(user.valid?).to be true
       end
@@ -18,7 +18,7 @@ RSpec.describe User, type: :model do
       it 'returns false' do
         user = User.new(
           email: 'not',
-          password: 'not',
+          password: 'not'
         )
         expect(user.valid?).to be false
       end
@@ -30,12 +30,12 @@ RSpec.describe User, type: :model do
       it 'returns false' do
         user = User.new(
           email: 'test@test.com',
-          password: '123456',
+          password: '123456'
         )
         user.save
         user2 = User.new(
           email: 'test@test.com',
-          password: '123456',
+          password: '123456'
         )
         expect(user2.valid?).to be false
       end
