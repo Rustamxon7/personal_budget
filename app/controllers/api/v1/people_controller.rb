@@ -9,7 +9,7 @@ class Api::V1::PeopleController < ApplicationController
 
   # GET /people/1
   def show
-    render json: @person.where(user_id: current_user.id)
+    render json: @person
   end
 
   # POST /people
