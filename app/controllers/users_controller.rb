@@ -5,13 +5,13 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     # render json: User.all
-    render json: User.all
+    render json: User.where(id: current_user.id)
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
-    render json: @user = User.find(params[:id])
+    render json: @user = User.find(params[:id]).where(id: current_user.id)
   end
 
   # GET /users/new

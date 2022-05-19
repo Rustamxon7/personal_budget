@@ -3,14 +3,13 @@ class Api::V1::PeopleController < ApplicationController
 
   # GET /people
   def index
-    @people = Person.all
-
+    @people = Person.where(user_id: current_user.id)
     render json: @people
   end
 
   # GET /people/1
   def show
-    render json: @person
+    render json: @person.where(user_id: current_user.id)
   end
 
   # POST /people
