@@ -1,5 +1,5 @@
 class Api::V1::PeopleController < ApplicationController
-  before_action :set_person, only: [:show, :update, :destroy]
+  before_action :set_person, only: %i[show update destroy]
 
   # GET /people
   def index
@@ -38,13 +38,14 @@ class Api::V1::PeopleController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_person
-      @person = Person.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def person_params
-      params.require(:person).permit(:name, :icon, :user_id)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_person
+    @person = Person.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def person_params
+    params.require(:person).permit(:name, :icon, :user_id)
+  end
 end
