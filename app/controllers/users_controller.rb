@@ -1,17 +1,18 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_user, only: %i[show edit update destroy]
 
   # GET /users
   # GET /users.json
   def index
-    # render json: User.all
-    render json: User.where(id: current_user.id)
+    render json: User.all
+    # render json: User.where(id: current_user.id)
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
-    render json: @user = User.find(params[:id]).where(id: current_user.id)
+    render json: @user
   end
 
   # GET /users/new
@@ -20,8 +21,6 @@ class UsersController < ApplicationController
   end
 
   # GET /users/1/edit
-  def edit; end
-
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
@@ -41,10 +40,6 @@ class UsersController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def user_params
-    params.require(:user).permit(:email, :password, :password_confirmation, :name)
-    # if params[:user][:password].blank?
-    #   params[:user].delete(:password)
-    #   params[:user].delete(:password_confirmation)
-    # end
+    params.require(:user).permit(:email, :name, :password, :password_confirmation)
   end
 end
