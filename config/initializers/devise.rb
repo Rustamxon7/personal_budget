@@ -266,13 +266,7 @@ Devise.setup do |config|
   config.navigational_formats = ['*/*', :html]
 
   config.jwt do |jwt|
-    jwt.secret = Rails.application.credentials.fetch(:secret_key_base)
-    jwt.dispatch_requests = [
-      ['POST', %r{^/login$}]
-    ]
-    jwt.revocation_requests = [
-      ['DELETE', %r{^/logout$}]
-    ]
+    jwt.secret = ENV['DEVISE_JWT_SECRET_KEY']
     jwt.expiration_time = 3.days.to_i
   end
 

@@ -9,4 +9,13 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations'
   }
+
+  resources :users, only: [:index, :show, :create, :update, :destroy]
+
+  # api/v1/people
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :people, only: [:index, :show, :create, :update, :destroy]
+    end
+  end
 end
