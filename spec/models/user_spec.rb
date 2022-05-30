@@ -5,6 +5,7 @@ RSpec.describe User, type: :model do
     context 'when the user is valid' do
       it 'returns true' do
         user = User.new(
+          name: 'test',
           email: 'test@test.com',
           password: '123456'
         )
@@ -17,6 +18,7 @@ RSpec.describe User, type: :model do
     context 'when the user is invalid' do
       it 'returns false' do
         user = User.new(
+          name: '',
           email: 'not',
           password: 'not'
         )
@@ -29,11 +31,13 @@ RSpec.describe User, type: :model do
     context 'when the user is not unique' do
       it 'returns false' do
         user = User.new(
+          name: 'test',
           email: 'test@test.com',
           password: '123456'
         )
         user.save
         user2 = User.new(
+          name: 'test',
           email: 'test@test.com',
           password: '123456'
         )

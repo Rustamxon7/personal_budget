@@ -3,6 +3,7 @@ require 'rails_helper'
 RSpec.describe Person, type: :model do
   before(:each) do
     @user = User.create!(
+      name: 'Example User',
       email: 'test@test.com',
       password: '123456'
     )
