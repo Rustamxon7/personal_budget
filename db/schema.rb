@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 2022_05_30_193812) do
     t.string "title", null: false
     t.string "money", null: false
     t.string "icon", null: false
+    t.string "color", null: false
     t.integer "persons_array", default: [], array: true
     t.integer "person_id", null: false
     t.bigint "user_id", null: false
@@ -32,6 +33,7 @@ ActiveRecord::Schema.define(version: 2022_05_30_193812) do
     t.integer "amount"
     t.string "type_operation"
     t.datetime "date"
+    t.text "note"
     t.bigint "category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
