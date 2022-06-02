@@ -3,7 +3,7 @@ class Api::V1::FundsController < ApplicationController
 
   # GET /funds
   def index
-    @funds = Fund.all
+    @funds = Fund.where(category_id: params[:category_id])
 
     render json: @funds
   end
@@ -46,6 +46,6 @@ class Api::V1::FundsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def fund_params
-      params.require(:fund).permit(:title, :amount, :type_operation, :date, :category_id)
+      params.require(:fund).permit(:title, :amount, :type_operation, :date, :category_id, :note)
     end
 end
