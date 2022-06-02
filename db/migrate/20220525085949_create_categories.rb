@@ -4,6 +4,7 @@ class CreateCategories < ActiveRecord::Migration[6.1]
       t.string :title, null: false
       t.string :money, null: false
       t.string :icon, null: false
+      t.string :color, null: false
       t.integer :persons_array, array: true, default: []
       t.integer :person_id, null: false
       t.belongs_to :user, null: false, foreign_key: true
