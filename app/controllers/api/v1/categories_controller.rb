@@ -3,18 +3,29 @@ class Api::V1::CategoriesController < ApplicationController
 
   # GET /categories
   def index
-    @categories = Category.all
-    render json: @categories
+    @categories = current_user.categories
+    @expenses = current_user.funds.where(type_declaration: 'expenses').order(date: :desc).limit(10)
+    @incomes = current_user.funds.where(type_declaration: 'incomes').order(date: :desc).limit(10)
+    @funds_titles = current_user.funds.pluck(:title)
+
+    render json: {
+      categories: @categories.as_json(
+        methods: %i[sum_funds last_funds]
+      ),
+      expenses: @expenses,
+      incomes: @incomes
+    }
   end
 
   # GET /categories/1
   def show
-    render json: @category
+    @funds = @category.funds
+    render json: @category.as_json(include: :funds)
   end
 
   # POST /categories
   def create
-    @category = Category.new(category_params)
+    @category = current_user.categories.new(category_params)
 
     if @category.save
       render json: @category, status: :created, location: @category
