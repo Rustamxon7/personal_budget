@@ -32,6 +32,8 @@ ActiveRecord::Schema.define(version: 2022_05_30_193812) do
     t.string "title"
     t.integer "amount"
     t.string "type_operation"
+    t.string "type_declaration"
+    t.string "icon"
     t.datetime "date"
     t.text "note"
     t.bigint "category_id", null: false
