@@ -3,18 +3,19 @@ class Api::V1::PeopleController < ApplicationController
 
   # GET /people
   def index
-    @people = Person.where(user_id: current_user.id)
-    render json: @people
+    @people = current_user.people.all.order(:name)
+    @categories = current_user.categories.all.order(:name)
+    render json: @people.as_json(include: :categories)
   end
 
   # GET /people/1
   def show
-    render json: @person
+    @person = Person.find(params[:id])
   end
 
   # POST /people
   def create
-    @person = Person.new(person_params)
+    @person = current_user.people.new(person_params)
 
     if @person.save
       render json: @person, status: :created, location: @person
