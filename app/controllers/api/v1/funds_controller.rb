@@ -4,7 +4,7 @@ class Api::V1::FundsController < ApplicationController
   # GET /funds
   def index
     # sort by type_operation
-    @funds = current_user.funds.order(type_operation: :desc)
+    @funds = current_user.funds.order(type_operation: :esc)
     @expenses = current_user.funds.where(type_declaration: 'expenses').order(date: :desc).limit(10)
     @incomes = current_user.funds.where(type_declaration: 'incomes').order(date: :desc).limit(10)
 
