@@ -43,27 +43,4 @@ RSpec.describe Category, type: :model do
       end
     end
   end
-
-  describe 'If category is not unique' do
-    context 'when the category is not unique' do
-      it 'returns false' do
-        category = Category.new(
-          title: 'test',
-          icon: 'test',
-          money: 'test',
-          user_id: @user.id,
-          person_id: @person.id
-        )
-        category.save
-        category2 = Category.new(
-          title: 'test',
-          icon: 'test',
-          money: 'test',
-          user_id: @user.id,
-          person_id: @person.id
-        )
-        expect(category2.valid?).to be false
-      end
-    end
-  end
 end

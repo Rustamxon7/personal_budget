@@ -57,6 +57,6 @@ class Api::V1::CategoriesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def category_params
-    params.require(:category).permit(:title, :money, :user_id, :person_id, :icon, :color, persons_array: [])
+    params.require(:category).permit(:title, :money, :person_id, :icon, persons_array: [])
   end
 end

@@ -19,10 +19,9 @@ ActiveRecord::Schema.define(version: 2022_05_30_193812) do
     t.string "title", null: false
     t.string "money", null: false
     t.string "icon", null: false
-    t.string "color", null: false
     t.integer "persons_array", default: [], array: true
     t.integer "person_id", null: false
-    t.bigint "user_id", null: false
+    t.bigint "user_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_categories_on_user_id"
