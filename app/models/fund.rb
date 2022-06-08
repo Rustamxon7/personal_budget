@@ -3,16 +3,9 @@ class Fund < ApplicationRecord
 
   validates :title, presence: true, length: { maximum: 150 }
   validates :note, presence: true, length: { maximum: 255 }
-
-  def last_funds
-    category.funds.order(created_at: :desc).limit(10)
-  end
-
-  def last_incomes
-    category.funds.where(type_declaration: 'incomes').order(date: :desc).limit(10)
-  end
-
-  def last_expenses
-    category.funds.where(type_declaration: 'expenses').order(date: :desc).limit(10)
-  end
+  validates :amount, presence: true, numericality: { greater_than: 0 }
+  
+  scope :last_funds, -> (type_declaration, limit) {
+    where(type_declaration: type_declaration).order(created_at: :desc).limit(limit)
+  }
 end
