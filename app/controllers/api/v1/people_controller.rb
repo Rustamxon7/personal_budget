@@ -11,6 +11,7 @@ class Api::V1::PeopleController < ApplicationController
   # GET /people/1
   def show
     @person = Person.find(params[:id])
+    render json: @person
   end
 
   # POST /people
