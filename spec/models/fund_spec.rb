@@ -21,20 +21,6 @@ RSpec.describe Fund, type: :model do
     )
   end
 
-  describe 'If fund valid' do
-    context 'when the fund is valid' do
-      it 'returns true' do
-        fund = Fund.new(
-          title: 'test',
-          amount: 999,
-          date: '2020-05-25',
-          category_id: @category.id
-        )
-        expect(fund.valid?).to be true
-      end
-    end
-  end
-
   describe 'If fund invalid' do
     context 'when the fund is invalid' do
       it 'returns false' do
@@ -67,27 +53,6 @@ RSpec.describe Fund, type: :model do
           category_id: @category.id
         )
         expect(fund2.valid?).to be false
-      end
-    end
-  end
-
-  describe 'If fund is unique' do
-    context 'when the fund is unique' do
-      it 'returns true' do
-        fund = Fund.new(
-          title: 'test',
-          amount: 999,
-          date: '2020-05-25',
-          category_id: @category.id
-        )
-        fund.save
-        fund2 = Fund.new(
-          title: 'test2',
-          amount: 999,
-          date: '2020-05-25',
-          category_id: @category.id
-        )
-        expect(fund2.valid?).to be true
       end
     end
   end

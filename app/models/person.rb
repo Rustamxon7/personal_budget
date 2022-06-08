@@ -4,14 +4,4 @@ class Person < ApplicationRecord
   validates :icon, presence: true
 
   has_many :categories, dependent: :destroy
-
-  after_save :update_categories
-
-  private
-
-  def update_categories
-    categories.each do |category|
-      category.update(person_id: id)
-    end
-  end
 end
