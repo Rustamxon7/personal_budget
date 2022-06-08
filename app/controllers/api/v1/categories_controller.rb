@@ -4,11 +4,11 @@ class Api::V1::CategoriesController < ApplicationController
   # GET /categories
   def index
     @categories = current_user.categories
-    
+
     render json: {
       categories: @categories.as_json(
-        methods: %i[sum_funds],
-      ),
+        methods: %i[sum_funds]
+      )
     }
   end
 

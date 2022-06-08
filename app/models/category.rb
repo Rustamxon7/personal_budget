@@ -10,5 +10,4 @@ class Category < ApplicationRecord
   def sum_funds
     funds.sum(:amount)
   end
-
 end
