@@ -4,16 +4,11 @@ class Api::V1::CategoriesController < ApplicationController
   # GET /categories
   def index
     @categories = current_user.categories
-    @expenses = current_user.funds.where(type_declaration: 'expenses').order(date: :desc).limit(10)
-    @incomes = current_user.funds.where(type_declaration: 'incomes').order(date: :desc).limit(10)
-    @funds_titles = current_user.funds.pluck(:title)
-
+    
     render json: {
       categories: @categories.as_json(
-        methods: %i[sum_funds last_funds]
+        methods: %i[sum_funds],
       ),
-      expenses: @expenses,
-      incomes: @incomes
     }
   end
 
