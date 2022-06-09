@@ -10,7 +10,7 @@ class Api::V1::CategoriesController < ApplicationController
 
   # GET /categories/1
   def show
-    render json: @category
+    render json: @category, serializer: CategorySerializer
   end
 
   # POST /categories
