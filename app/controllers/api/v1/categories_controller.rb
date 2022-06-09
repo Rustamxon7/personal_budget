@@ -5,17 +5,12 @@ class Api::V1::CategoriesController < ApplicationController
   def index
     @categories = current_user.categories
 
-    render json: {
-      categories: @categories.as_json(
-        methods: %i[sum_funds]
-      )
-    }
+    render json: @categories, each_serializer: CategorySerializer
   end
 
   # GET /categories/1
   def show
-    @funds = @category.funds
-    render json: @category.as_json(include: :funds)
+    render json: @category
   end
 
   # POST /categories
