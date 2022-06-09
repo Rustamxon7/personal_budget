@@ -19,6 +19,8 @@ Rails.application.routes.draw do
       resources :categories, only: [:index, :show, :create, :update, :destroy] do
         resources :funds, only: [:index, :show, :create, :update, :destroy]
       end
+
+      resources :transactions, only: [:index, :show]
     end
   end
 end
