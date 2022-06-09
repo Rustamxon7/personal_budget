@@ -3,14 +3,12 @@ class Api::V1::PeopleController < ApplicationController
 
   # GET /people
   def index
-    @people = current_user.people.all.order(:name)
-    @categories = current_user.categories.all.order(:name)
-    render json: @people.as_json(include: :categories)
+    @people = current_user.people
+    render json: @people, each_serializer: PersonSerializer
   end
 
   # GET /people/1
   def show
-    @person = Person.find(params[:id])
     render json: @person
   end
 
