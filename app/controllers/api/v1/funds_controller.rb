@@ -3,18 +3,9 @@ class Api::V1::FundsController < ApplicationController
 
   # GET /funds
   def index
-    # sort by type_operation
-    @funds = current_user.funds.order(created_at: :desc)
-    @expenses = Fund.last_funds_by_type('expenses', 10)
-    @incomes = Fund.last_funds_by_type('incomes', 10)
-    @last_funds = Fund.last_funds(10)
+    @funds = current_user.funds
 
-    render json: {
-      funds: @funds,
-      expenses: @expenses,
-      incomes: @incomes,
-      recent: @last_funds
-    }
+    render json: @funds, each_serializer: FundSerializer
   end
 
   # GET /funds/1
