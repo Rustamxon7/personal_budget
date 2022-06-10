@@ -3,8 +3,8 @@ class Api::V1::PeopleController < ApplicationController
 
   # GET /people
   def index
-    @people = Person.where(user_id: current_user.id)
-    render json: @people
+    @people = current_user.people
+    render json: @people, each_serializer: PersonSerializer
   end
 
   # GET /people/1
@@ -14,7 +14,7 @@ class Api::V1::PeopleController < ApplicationController
 
   # POST /people
   def create
-    @person = Person.new(person_params)
+    @person = current_user.people.new(person_params)
 
     if @person.save
       render json: @person, status: :created, location: @person
